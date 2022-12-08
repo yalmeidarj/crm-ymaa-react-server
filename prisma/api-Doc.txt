@@ -1,0 +1,106 @@
+GET /services/:id
+Retrieves the service with the specified ID.
+
+Parameters
+
+id: The ID of the service to retrieve.
+Response
+
+A JSON object containing the following properties:
+
+service: An object representing the service with the specified ID.
+POST /services
+Creates a new service.
+
+Request body
+
+A JSON object containing the following properties:
+
+appointmentDate: The date and time of the service appointment.
+value: The cost of the service.
+payType: The payment type for the service (e.g. cash, credit card).
+serviceAddress: The address where the service will be provided.
+isPaid: A boolean indicating whether the service has been paid for.
+description: A description of the service.
+serviceClientId: The ID of the client who will receive the service.
+Response
+
+A JSON object containing the following properties:
+
+service: An object representing the newly created service.
+PUT /services/:id
+Updates the service with the specified ID.
+
+Parameters
+
+id: The ID of the service to update.
+Request body
+
+A JSON object containing the following properties:
+
+appointmentDate: The date and time of the service appointment.
+value: The cost of the service.
+payType: The payment type for the service (e.g. cash, credit card).
+serviceAddress: The address where the service will be provided.
+isPaid: A boolean indicating whether the service has been paid for.
+description: A description of the service.
+serviceClientId: The ID of the client who will receive the service.
+Response
+
+A JSON object containing the following properties:
+
+service: An object
+
+
+GET /clients/:id
+Retrieves the client with the specified ID.
+
+Parameters
+
+id: The ID of the client to retrieve.
+Response
+
+A JSON object containing the following properties:
+
+client: An object representing the client with the specified ID.
+POST /clients
+Creates a new client.
+
+Request body
+
+A JSON object containing the following properties:
+
+name: The client's name.
+lastName: The client's last name.
+phone: The client's phone number.
+email: The client's email address.
+address: The client's address.
+notes: Any notes about the client.
+Response
+
+A JSON object containing the following properties:
+
+client: An object representing the newly created client.
+PUT /clients/:id
+Updates the client with the specified ID.
+
+Parameters
+
+id: The ID of the client to update.
+Request body
+
+A JSON object containing the following properties:
+
+name: The client's name.
+lastName: The client's last name.
+phone: The client's phone number.
+email: The client's email address.
+address: The client's address.
+notes: Any notes about the client.
+Response
+
+A JSON object containing the following properties:
+
+client: An object representing the updated client.
+DELETE /clients/:id
+De

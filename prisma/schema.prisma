@@ -40,6 +40,10 @@ model Service {
   serviceClientId Int
 }
 
+model Event {
+  id Int @id @default(autoincrement())
+}
+
 model Expense {
   id        Int      @id @default(autoincrement())
   value     Int
