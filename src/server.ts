@@ -120,24 +120,57 @@ async function bootstrap() {
 
     // Create a new service
     fastify.post('/services', async (request, reply) => {
-    // Create a new service using the data from the request body
-        const { appointmentDate, value, payType, serviceAddress, isPaid, description, serviceClientId } = request.body;
+        // Create a new service using the data from the request body
+            const { appointmentDate, value, payType, serviceAddress, isPaid, description, serviceClientId } = request.body;
 
-    // Create a new service
+        // Convert appointmentDate and value to correct data types
+        const appointmentDateNum = new Date(appointmentDate);
+        const valueNum = parseInt(value, 10);
+        const serviceClientIdNum = parseInt(serviceClientId, 10);
+
+        // Create an empty data object
+        const data = {};
+
+        // If the serviceClient property exists in the request body, create a new client with the given id
+        if (serviceClientId) {
+            const serviceClientIdNum = parseInt(serviceClientId, 10);
+            // Send a GET request to the /clients route with the serviceClient.id property
+            // This will retrieve the client with the given id
+
+            // const response = await fetch(`http://127.0.0.1:4343/clients/${serviceClient.id}`);
+            // const client = await response.json();
+
+            // Add the retrieved client to the data object
+            data.serviceClient = {
+                connect: { id: serviceClientIdNum }
+            };
+        } else {
+            const serviceClientIdNum = parseInt(serviceClientId, 10);
+        // If the serviceClientId property does not exist, create a new client for the new service
+            data.serviceClient = {
+                create: {}
+            };
+    }
+
+        // Add the other properties to the data object
+        data.appointmentDate = appointmentDateNum;
+        data.value = valueNum;
+        data.payType = payType;
+        data.serviceAddress = serviceAddress;
+        data.isPaid = isPaid;
+        data.description = description;
+
+        // Create a new service
         const newService = await prisma.service.create({
-            data: {
-                appointmentDate,
-                value,
-                payType,
-                serviceAddress,
-                isPaid,
-                description,
-                serviceClientId,
-            },
+            data: data,
         });
 
-    return { service: newService };
+        return { service: newService };
     });
+
+
+
+
 
     // Update an existing service
     fastify.post('/services/:id/update', async (request, reply) => {
